@@ -384,7 +384,7 @@ class VitsDataModule(L.LightningDataModule):
         speaker_id_map = self.piper_config.speaker_id_map
 
         with open(self.csv_path, "r", encoding="utf-8") as csv_file:
-            reader = csv.reader(csv_file, delimiter="|")
+            reader = csv.reader(csv_file, delimiter="|", quoting=csv.QUOTE_NONE, escapechar="\\")
             for row_number, row in enumerate(reader, start=1):
                 utt_id = row[0]
                 speaker_id: Optional[int] = None
