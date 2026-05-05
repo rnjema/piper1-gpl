@@ -172,7 +172,7 @@ class VitsDataModule(L.LightningDataModule):
         if self.is_multispeaker:
             # Generate speaker id map
             with open(self.csv_path, "r", encoding="utf-8") as csv_file:
-                reader = csv.reader(csv_file, delimiter="|")
+                reader = csv.reader(csv_file, delimiter="|", quoting=csv.QUOTE_NONE, escapechar="\\")
                 for row in reader:
                     assert (
                         len(row) >= 3
@@ -233,7 +233,7 @@ class VitsDataModule(L.LightningDataModule):
         num_utterances = 0
         report_prepare: Optional[bool] = None
         with open(self.csv_path, "r", encoding="utf-8") as csv_file:
-            reader = csv.reader(csv_file, delimiter="|")
+            reader = csv.reader(csv_file, delimiter="|", quoting=csv.QUOTE_NONE, escapechar="\\")
             for row_number, row in enumerate(reader, start=1):
                 utt_id = row[0]
                 speaker_id: Optional[int] = None
